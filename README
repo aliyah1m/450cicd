@@ -1,0 +1,13 @@
+Tekton Pipelines Testing
+
+1. Variable injection
+    - Passing parameters through cmdline
+    - Github push triggered pipeline with user input
+
+2. Accessing secret files
+    - Secret yaml file
+    - Secret as mounted module
+
+How to escape container...
+
+    
