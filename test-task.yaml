@@ -1,0 +1,28 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: test-task
+spec:
+  params:
+    - name: task-param
+      description: "A parameter received from the Pipeline"
+      type: string
+  steps:
+    - name: print-param
+      image: alpine
+      # trying the secrets stored as separate secret.yaml
+      env:
+              - name: USERNAME
+                valueFrom:
+                  secretKeyRef:
+                    name: my-secret    # Reference to the secret created in the separate YAML file
+                    key: username      # Key in the secret to access can access lije: echo $USERNAME
+              - name: PASSWORD
+                valueFrom:
+                  secretKeyRef:
+                    name: my-secret
+                    key: password
+      script: |
+        #!/bin/sh
+        title = "$(params.task-param)"
+        echo $title

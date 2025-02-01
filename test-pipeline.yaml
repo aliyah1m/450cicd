@@ -1,0 +1,18 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: test-pipeline
+spec:
+  params:
+    - name: runtime-param
+      description: "A parameter to be passed at runtime"
+      type: string
+      default: "default-value"  # Optional default value
+#####
+  tasks:
+    - name: test-task
+      taskRef:
+        name: test-task
+      params:
+        - name: task-param
+          value: $(params.runtime-param)  # Pass Pipeline param to Task

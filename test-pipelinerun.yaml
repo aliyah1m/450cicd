@@ -1,0 +1,10 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: test-pipelinerun
+spec:
+  pipelineRef:
+    name: test-pipeline  # Reference the Pipeline
+  params:
+    - name: runtime-param
+      value: "runtime-value"  # Pass the value dynamically at runtime
