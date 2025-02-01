@@ -10,4 +10,6 @@ Tekton Pipelines Testing
 
 How to escape container...
 
+Secerets in tekton pipelines are declared in the task that uses them/only exists in that scope
+
     
