@@ -3,13 +3,28 @@ kind: Pipeline
 metadata:
   name: test-pipeline
 spec:
+#####
+  workspaces:
+    - name: test-secret-workspace
+#####
   params:
     - name: runtime-param
       description: "A parameter to be passed at runtime"
       type: string
-      default: "default-value"  # Optional default value
+      # Optional default value
+      default: "default-value"  
 #####
   tasks:
+    # task mounting secrets file into workspace
+    ##
+    - name: mounting-secret-workspace
+      taskRef:
+          name: mounting-secret-workspace
+      workspaces:
+          - name: test-secret-workspace
+            workspace: test-secret-workspace
+    # standard variable injection test task
+    ##
     - name: test-task
       taskRef:
         name: test-task

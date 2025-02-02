@@ -3,8 +3,17 @@ kind: PipelineRun
 metadata:
   name: test-pipelinerun
 spec:
+  # Reference the Pipeline
   pipelineRef:
-    name: test-pipeline  # Reference the Pipeline
+    name: test-pipeline  
+  # Mounting the secret file into workspace
+  ##
+  workspaces:
+    - name: test-secret-workspace
+      secret:
+        secretName: test-secret
+  # accepts runtime params (referenced later in test-task)
+  ##
   params:
     - name: runtime-param
       value: "runtime-value"  # Pass the value dynamically at runtime

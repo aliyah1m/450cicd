@@ -1,15 +1,20 @@
 Tekton Pipelines Testing
 
-1. Variable injection
-    - Passing parameters through cmdline
-    - Github push triggered pipeline with user input
+1. Variable injection- Ways that parameters can be passed dynamically
+    -> Runtime parameter
+        -> COMPLETED
+        -> ";whoami;#
+    -> Github push triggered pipeline with user input
 
-2. Accessing secret files
-    - Secret yaml file
-    - Secret as mounted module
-
-How to escape container...
-
-Secerets in tekton pipelines are declared in the task that uses them/only exists in that scope
+2. Accessing secret files- Ways that secrets can be stored
+    -> As a kubernetes secret, injected as an environment variable into a Tekton Task
+        -> COMPLETED
+        -> can only access if you know the variable names beforehand
+        -> can only work within the specific task its deployed in 
+    -> As a file, mounted under /secrets/PASSWORD
+    -> As a file in Tekton Workspace- Kubernetes secret mounted as Tekton workspace
+        -> each Tekton Task runs in its own Kubernetes Pod, it does not 
+           automatically share files with other tasks. Workspaces solve 
+           this by providing a shared storage location that multiple tasks can access.
 
     
