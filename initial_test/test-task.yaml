@@ -10,7 +10,7 @@ spec:
   steps:
     - name: print-param
       image: alpine
-      # trying the secrets stored as separate secret.yaml
+      #trying the secrets stored as separate secret.yaml
       env:
               - name: USERNAME
                 valueFrom:

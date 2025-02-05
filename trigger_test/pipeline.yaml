@@ -1,0 +1,15 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: trigger-test-pipeline
+spec:
+  params:
+      - name: issue-title
+        description: The title of the GitHub issue
+  tasks:
+    - name: echo-issue-title
+      taskRef:
+        name: echo-issue-title-task
+      params:
+        - name: issue-title
+          value: "$(params.issue-title)"

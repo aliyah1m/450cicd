@@ -1,0 +1,11 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: EventListener
+metadata:
+  name: github-pull-request-listener
+spec:
+  serviceAccountName: pipeline-sa  # Optional, specify if using custom service account
+  triggers:
+    - template:
+        ref: github-pull-request-trigger-template
+      bindings:  # Correct usage as an array
+        - ref: github-pull-request-trigger-binding

@@ -1,0 +1,14 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: echo-issue-title-task
+spec:
+  params:
+    - name: issue-title
+      description: The title of GitHub issue
+  steps:
+    - name: echo-title
+      image: busybox
+      script: |
+        #!/bin/sh
+        echo "GitHub Issue Title: $(inputs.params.issue-title)"

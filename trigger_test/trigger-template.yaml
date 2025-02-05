@@ -1,0 +1,19 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerTemplate
+metadata:
+  name: github-pull-request-trigger-template
+spec:
+  params:
+    - name: issue-title
+      description: The title of the GitHub issue
+  resourcetemplates:
+    - apiVersion: tekton.dev/v1beta1
+      kind: PipelineRun
+      metadata:
+        generateName: pull-request-pipeline-run-
+      spec:
+        pipelineRef:
+          name: trigger-test-pipeline
+        params:
+          - name: issue-title
+            value: $(tt.params.issue-title)

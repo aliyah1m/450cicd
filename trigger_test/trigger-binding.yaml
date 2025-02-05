@@ -1,0 +1,8 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerBinding
+metadata:
+  name: github-pull-request-trigger-binding
+spec:
+  params:
+    - name: issue-title
+      value: $(body.issue.title)  # Extracts  title from  GitHub issue
